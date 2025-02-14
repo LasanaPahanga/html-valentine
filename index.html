@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #ff3366;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-in;
+            overflow-x: hidden;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        h1 {
+            color: #cc0000;
+            animation: popIn 1.5s ease-in-out;
+        }
+        .love-name {
+            font-size: 32px;
+            font-family: 'Sacramento', cursive;
+            font-weight: bold;
+            color: #cc0000;
+            animation: glow 2s infinite alternate;
+            display: inline-block;
+        }
+        .valentine-btn {
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .valentine-btn:hover {
+            background-color: #cc0000;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #ff6699; }
+            100% { text-shadow: 0 0 20px #ff3366; }
+        }
+        @keyframes fallingHearts {
+            0% { transform: translateY(-10vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        @keyframes floatingEmojis {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .falling-heart {
+            position: absolute;
+            top: 0;
+            font-size: 24px;
+            color: red;
+            animation: fallingHearts 4s linear infinite;
+        }
+        .floating-emoji {
+            position: absolute;
+            font-size: 24px;
+            animation: floatingEmojis 8s linear infinite;
+        }
+        #memories {
+            display: none;
+            margin-top: 30px;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        #memories.show {
+            display: block;
+            opacity: 1;
+        }
+        .memory-img {
+            width: 414px;
+            height: 896px;
+            margin: 10px auto;
+            display: block;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Valentine's Day, My Love!</h1>
+        <p class="love-name">❤ Dewindi ❤</p>
+        <p>My dearest love,</p>
+        <p>You are my sunshine, my joy, and my heart's delight. Every moment with you is a beautiful memory, and I am grateful for every smile, every laugh, and every dream we share. I love you endlessly!</p>
+        <p>Forever yours,</p>
+        <p><strong>Lasana</strong></p>
+        
+        <button class="valentine-btn" onclick="playSong()">💖 Play Our Song 💖</button>
+        <button class="valentine-btn" onclick="showMemories()">📸 View Our Memories 📸</button>
+        
+        <audio id="bg-music" loop>
+            <source src="perfect.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+
+        <div id="memories">
+            <img class="memory-img" src="./image1.jpeg" alt="Memory 1">
+            <img class="memory-img" src="./image2.jpeg" alt="Memory 2">
+        </div>
+    </div>
+    
+    <script>
+        function playSong() {
+            let audio = document.getElementById('bg-music');
+            audio.play();
+        }
+
+        function showMemories() {
+            let memories = document.getElementById('memories');
+            memories.classList.add('show');
+
+            setTimeout(() => {
+                memories.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 500);
+        }
+
+        function createFallingHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(heart);
+            }
+        }
+
+        function createFloatingScreenEmojis() {
+            for (let i = 0; i < 10; i++) {
+                let emoji = document.createElement('div');
+                emoji.className = 'floating-emoji';
+                emoji.innerHTML = '🥰';
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.bottom = '-50px';
+                emoji.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                document.body.appendChild(emoji);
+            }
+        }
+
+        window.onload = function() {
+            createFallingHearts();
+            createFloatingScreenEmojis();
+        };
+    </script>
+</body>
+</html>
